@@ -286,7 +286,7 @@ This project was built for internship applications but is open for contributions
 
 ## 👨‍💻 Developer
 
-**Anamitra Sarkar**  
+**Yashika Soni**  
 🎓 B.Tech 3rd Year Student 
 💼 Built for internship applications  
 🚀 Showcasing full-stack MERN development skills  
