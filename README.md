@@ -287,16 +287,10 @@ This project was built for internship applications but is open for contributions
 ## 👨‍💻 Developer
 
 **Anamitra Sarkar**  
-🎓 B.Tech 3rd Year Student specializing in AI/ML  
+🎓 B.Tech 3rd Year Student 
 💼 Built for internship applications  
 🚀 Showcasing full-stack MERN development skills  
-📧 Contact: anamitrasarslsn10ab@gmail.com
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+📧 Contact: soniyashika164@gmail.com
 
 ---
 
