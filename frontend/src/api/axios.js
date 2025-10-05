@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// Updated API base URL for production deployment
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://book-review-1ayf.onrender.com';
 
 const axiosInstance = axios.create({
