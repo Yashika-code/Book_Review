@@ -156,7 +156,6 @@ internship_project/
 
 ```bash
 git clone <your-repo-url>
-cd internship_project
 
 # Backend setup
 cd backend
