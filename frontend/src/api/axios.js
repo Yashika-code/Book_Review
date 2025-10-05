@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://book-review-backend-s1dz.onrender.com/api';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://book-review-1ayf.onrender.com';
 
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
