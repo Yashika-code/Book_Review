@@ -6,6 +6,7 @@ const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
   const [darkMode, setDarkMode] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -44,8 +45,8 @@ const Navbar = () => {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50 transition-colors">
-      <div className="container mx-auto px-4">
+    <nav className="bg-white dark:bg-gray-800 shadow-lg sticky top-0 z-50 transition-colors duration-300">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <button
@@ -64,12 +65,14 @@ const Navbar = () => {
             </span>
           </button>
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-6">
             <Link
               to="/"
-              className={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition ${
-                location.pathname === "/" ? "font-bold text-primary" : ""
+              className={`hover:text-primary transition ${
+                location.pathname === "/"
+                  ? "font-semibold text-primary"
+                  : "text-gray-700 dark:text-gray-300"
               }`}
             >
               Home
@@ -77,8 +80,10 @@ const Navbar = () => {
 
             <Link
               to="/books"
-              className={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition ${
-                location.pathname === "/books" ? "font-bold text-primary" : ""
+              className={`hover:text-primary transition ${
+                location.pathname === "/books"
+                  ? "font-semibold text-primary"
+                  : "text-gray-700 dark:text-gray-300"
               }`}
             >
               Browse Books
@@ -88,7 +93,7 @@ const Navbar = () => {
               <>
                 <Link
                   to="/add-book"
-                  className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition"
+                  className="text-gray-700 dark:text-gray-300 hover:text-primary transition"
                 >
                   Add Book
                 </Link>
@@ -118,31 +123,11 @@ const Navbar = () => {
               className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
               aria-label="Toggle dark mode"
             >
-              {darkMode ? (
-                <svg
-                  className="w-5 h-5 text-yellow-500"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="w-5 h-5 text-gray-700"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                </svg>
-              )}
+              {darkMode ? "☀️" : "🌙"}
             </button>
           </div>
 
-          {/* Hamburger Menu (Mobile) */}
+          {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
             className="md:hidden p-2 text-gray-700 dark:text-gray-200 hover:text-primary focus:outline-none"
@@ -171,20 +156,24 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        {menuOpen && (
-          <div className="md:hidden mt-2 space-y-2 pb-4 flex flex-col items-start border-t border-gray-200 dark:border-gray-700">
+        {/* Mobile Dropdown Menu */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            menuOpen ? "max-h-96 opacity-100 mt-2" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="flex flex-col bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-4 space-y-3">
             <Link
               to="/"
               onClick={() => setMenuOpen(false)}
-              className="block text-gray-700 dark:text-gray-300 hover:text-primary px-2 py-1 w-full"
+              className="block text-gray-700 dark:text-gray-300 hover:text-primary"
             >
               Home
             </Link>
             <Link
               to="/books"
               onClick={() => setMenuOpen(false)}
-              className="block text-gray-700 dark:text-gray-300 hover:text-primary px-2 py-1 w-full"
+              className="block text-gray-700 dark:text-gray-300 hover:text-primary"
             >
               Browse Books
             </Link>
@@ -194,7 +183,7 @@ const Navbar = () => {
                 <Link
                   to="/add-book"
                   onClick={() => setMenuOpen(false)}
-                  className="block text-gray-700 dark:text-gray-300 hover:text-primary px-2 py-1 w-full"
+                  className="block text-gray-700 dark:text-gray-300 hover:text-primary"
                 >
                   Add Book
                 </Link>
@@ -203,7 +192,7 @@ const Navbar = () => {
                     handleLogout();
                     setMenuOpen(false);
                   }}
-                  className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-primary px-2 py-1"
+                  className="block text-left text-gray-700 dark:text-gray-300 hover:text-primary"
                 >
                   Logout ({user?.name})
                 </button>
@@ -213,14 +202,14 @@ const Navbar = () => {
                 <Link
                   to="/login"
                   onClick={() => setMenuOpen(false)}
-                  className="block text-gray-700 dark:text-gray-300 hover:text-primary px-2 py-1 w-full"
+                  className="block w-full text-center btn-secondary text-sm"
                 >
                   Login
                 </Link>
                 <Link
                   to="/register"
                   onClick={() => setMenuOpen(false)}
-                  className="block text-gray-700 dark:text-gray-300 hover:text-primary px-2 py-1 w-full"
+                  className="block w-full text-center btn-primary text-sm"
                 >
                   Sign Up
                 </Link>
@@ -229,17 +218,15 @@ const Navbar = () => {
 
             <button
               onClick={toggleDarkMode}
-              className="ml-2 p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+              className="w-full text-center mt-2 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
             >
               {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
             </button>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
 };
 
 export default Navbar;
-
-
